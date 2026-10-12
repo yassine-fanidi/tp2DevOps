@@ -44,5 +44,16 @@ pipeline {
                 """
             }
         }
+        stage('deploy image') {
+            steps {
+                echo 'Déploiement du conteneur en local...'
+                // Commandes Windows Batch pour nettoyer et exécuter le conteneur
+                bat """
+                    docker stop mon-application-pipeline 2>nul || ver >nul
+                    docker rm mon-application-pipeline 2>nul || ver >nul
+                    docker run -d --name mon-application-pipeline -p 8086:80 yassinedevelopper/tp2devops:Pipeline2-%BUILD_NUMBER%
+                """
+            }
+        }
     }
 }
