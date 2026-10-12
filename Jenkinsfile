@@ -38,7 +38,7 @@ pipeline {
             steps {
                 echo 'Publication de l\'image sur Docker Hub...'
                 bat """
-                    echo %DOCKER_REGISTRY_CREDS_SEND% | docker login -u yassinedevelopper --password-stdin
+                    echo %DOCKER_REGISTRY_CREDS_PSW% | docker login -u yassinedevelopper --password-stdin
                     docker push yassinedevelopper/tp2devops:Pipeline2-%BUILD_NUMBER%
                     docker logout
                 """
